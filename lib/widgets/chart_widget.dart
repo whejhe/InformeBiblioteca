@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'dart:ui' as ui;
+import 'package:pdf/widgets.dart' as pw;
 
 class ChartWidget extends StatelessWidget {
   @override
@@ -19,7 +20,7 @@ class ChartWidget extends StatelessWidget {
               FlSpot(3, 7),
             ],
             isCurved: true,
-            colors: [Colors.blue],
+            color: Colors.blue, // Cambio aquí
           ),
         ],
       ),
@@ -27,15 +28,17 @@ class ChartWidget extends StatelessWidget {
   }
 
   // Convertir el gráfico a imagen
-  static Future<pw.Image> getChartImage() async {
+  static Future<pw.MemoryImage> getChartImage() async {
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
+
+    // Utilizamos RepaintBoundary para capturar la imagen del widget
     final chart = ChartWidget();
-    final widget = Container(width: 300, height: 200, child: chart);
-    final renderObject = widget.createRenderObject(context);
-    renderObject.layout(constraints);
-    renderObject.paint(canvas, Offset.zero);
-    final image = await recorder.endRecording().toImage(300, 200);
+    final repaintBoundary = RepaintBoundary(
+        child: Container(width: 300, height: 200, child: chart));
+
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(300, 200);
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
     return pw.MemoryImage(bytes!.buffer.asUint8List());
   }

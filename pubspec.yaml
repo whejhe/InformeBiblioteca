@@ -16,6 +16,7 @@ dependencies:
   fl_chart: ^0.66.0
   printing: ^5.11.0
   intl: ^0.18.1
+  permission_handler: ^8.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:informe_biblioteca/models/book.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 import 'services/pdf_service.dart';
 
 void main() => runApp(MyApp());
@@ -41,6 +39,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () => PdfService.generateReport(
                 userName: _userController.text,
                 books: _books,
+                context: context,
               ),
               child: const Text('Generar PDF'),
             ),
