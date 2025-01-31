@@ -1,0 +1,8 @@
+lib/
+├── models/
+│   └── book.dart       # Modelo de datos para libros
+├── services/
+│   └── pdf_service.dart # Lógica de generación de PDF
+├── widgets/
+│   └── chart_widget.dart # Gráfico con fl_chart
+└── main.dart           # Pantalla principal
