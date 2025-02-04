@@ -1,3 +1,4 @@
+// models/book.dart
 class Book {
   final String id;
   final String title;

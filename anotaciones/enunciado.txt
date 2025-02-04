@@ -1,0 +1,16 @@
+
+En dicho informe debe constar, al menos obligatoriamente de (REQUERIMIENTOS): 
+●  Título del informe 
+●  Imagen con el logotipo de la biblioteca. 
+●  Nombre del usuario. 
+●  Los libros prestados con su identificación. 
+●  La fecha de devolución. 
+●  Un gráfico (del tipo que consideres que mejor se adapta al escenario) que muestre el número de 
+libros leídos por el usuario en el último mes. 
+●  Link a la URL de la web (ficticia) de la biblioteca; puede ser www.biblio<<tunombre>>.com 
+ 
+Librerías a utilizar: 
+●  Generar el informe y visualizarlo/imprimirlo: pdf, path_provider, open_file / pdfview / printing 
+●  Crear el gráfico: syncfusion_flutter_charts 28.2.4
+●  OPCIONAL: Almacenar datos localmente con shared_preferences 
+   

@@ -26,4 +26,8 @@ Ejecutar Proyecto con:
 flutter run
 
 Añadir dependencias:
+flutter clean
 flutter pub get
+
+Actualizar dependecias:
+flutter pub upgrade

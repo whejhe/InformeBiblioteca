@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
-  final TextEditingController _userController = TextEditingController(text: "Juan Pérez");
+  final TextEditingController _userController = TextEditingController(text: "Carlos Fernández");
   final List<Book> _books = [
     Book(id: "B-001", title: "El Quijote", returnDate: DateTime(2024, 3, 15)),
     Book(id: "B-002", title: "Cien años de soledad", returnDate: DateTime(2024, 3, 20)),
