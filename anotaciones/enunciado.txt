@@ -11,6 +11,6 @@ libros leídos por el usuario en el último mes.
  
 Librerías a utilizar: 
 ●  Generar el informe y visualizarlo/imprimirlo: pdf, path_provider, open_file / pdfview / printing 
-●  Crear el gráfico: syncfusion_flutter_charts 28.2.4
+●  Crear el gráfico: fl_chart
 ●  OPCIONAL: Almacenar datos localmente con shared_preferences 
    

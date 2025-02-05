@@ -31,3 +31,6 @@ flutter pub get
 
 Actualizar dependecias:
 flutter pub upgrade
+
+Generar doc:
+dart doc .

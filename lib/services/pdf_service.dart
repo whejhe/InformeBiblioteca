@@ -11,11 +11,33 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:printing/printing.dart';
 import 'package:informe_biblioteca/models/book.dart';
 
+/// Clase principal para generar informes PDF.
+///
+/// Esta clase utiliza el paquete `pdf` para crear documentos PDF
+/// que contienen información sobre libros prestados por un usuario.
 class PdfService {
+  /// Genera un informe PDF con los datos proporcionados.
+  ///
+  /// [userName]: El nombre del usuario que generará el informe.
+  /// [books]: Una lista de libros prestados por el usuario.
+  /// [context]: El contexto de Flutter necesario para mostrar mensajes de error.
+  ///
+  /// Este método crea un documento PDF con:
+  /// - Un título.
+  /// - Una imagen del logotipo de la biblioteca.
+  /// - El nombre del usuario.
+  /// - Una lista de libros prestados con sus fechas de devolución.
+  /// - Un enlace a la web ficticia de la biblioteca.
+  ///
+  /// Si se ejecuta en dispositivos móviles, guarda el archivo PDF en la carpeta de descargas.
+  /// Si se ejecuta en web, comparte el archivo PDF directamente.
+  ///
+  /// @throws Exception si no se pueden solicitar permisos de almacenamiento o si ocurre un error durante la generación.
   static Future<void> generateReport({
     required String userName,
     required List<Book> books,
     required BuildContext context,
+    required Uint8List chartImageBytes,
   }) async {
     try {
       if (!kIsWeb) {
@@ -27,6 +49,7 @@ class PdfService {
         }
       }
 
+      // Crear el documento PDF
       final pdf = pw.Document();
       final logo = await imageFromAssetBundle('assets/images/logo.png');
 
@@ -48,6 +71,15 @@ class PdfService {
                   style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
               ...books.map((book) => pw.Text(
                   '${book.id}: ${book.title} - Devolución: ${_formatDate(book.returnDate)}')),
+              pw.SizedBox(height: 20),
+              // Gráfico
+              pw.Center(
+                child: pw.Image(
+                  pw.MemoryImage(chartImageBytes),
+                  width: 300,
+                  height: 150,
+                ),
+              ),
               pw.SizedBox(height: 20),
               pw.UrlLink(
                 child: pw.Text('Visita nuestra web'),
@@ -83,6 +115,10 @@ class PdfService {
     }
   }
 
+  /// Formatea una fecha [DateTime] en un string con formato "DD/MM/YYYY".
+  ///
+  /// @param date La fecha a formatear.
+  /// @return Un string con la fecha formateada.
   static String _formatDate(DateTime date) {
     return "${date.day}/${date.month}/${date.year}";
   }
